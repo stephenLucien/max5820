@@ -1,7 +1,10 @@
  /*
   * iio/dac/max5820.c
-  * Copyright (C) 2014 Philippe Reynes
-  *
+  * 
+  * This file is modified from kernel driver iio/dac/max5821.c, 
+  * if you find this driver helpful, plz say thanks to 
+  * the original author: Philippe Reynes <tremyfr@yahoo.fr>
+  * 
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License version 2 as
   * published by the Free Software Foundation.
@@ -428,6 +431,6 @@ static struct i2c_driver max5820_driver = {
 };
 module_i2c_driver(max5820_driver);
 
-MODULE_AUTHOR("Philippe Reynes <tremyfr@yahoo.fr>");
+MODULE_AUTHOR("github.com/stephenLucien");
 MODULE_DESCRIPTION("MAX5820 DAC");
 MODULE_LICENSE("GPL v2");
