@@ -7,7 +7,7 @@ This driver is almost the same as driver max5821 in kernel tree.
 How to compile this driver?
 1. copy this file to kernel drivers/iio/dac/max5820.c
 2. modify drivers/iio/dac/Kconfig, and add:
-###################
+//###################
 config MAX5820
 	tristate "Maxim MAX5820 DAC driver"
 	depends on I2C
@@ -16,13 +16,13 @@ config MAX5820
 	help
 	  Say yes here to build support for Maxim MAX5820
 	  8 bits DAC.
-###################
+//###################
 3. modify drivers/iio/dac/Makefile, and add:
-###################
+//###################
 obj-$(CONFIG_MAX5820) += max5820.o
 
-###################
-4. make modules_install  
+//###################
+4. menuconfig and enable iio, make modules_install  to compile this module.
 
 How to use it?
 1. before you can use this module, you should setup this node in device tree.
@@ -46,5 +46,17 @@ where vref-supply can be a fixed regulator:
 	};
 also, if you don't know how to config vref-supply, you can 
 discard this property and setup the default vref in max5820.c,
-which is defined as DEFAULT_mVref with preset value 3300.
+which is defined as DEFAULT_mVREF with preset value 3300.
+
+2. probe this module.
+3. access this device in userspace
+change directory to this device node, such as /sys/bus/iio/devices/iio:device*/,
+this device should has name 'max5820'.
+And:
+echo 0 > out_voltage0_powerdown to disable powerdown mode of channel 0;
+echo value[range from 0 to 255] > out_voltage0_raw to set output voltage.
+Vout = Vref * value / 255;
+
+
+
 
